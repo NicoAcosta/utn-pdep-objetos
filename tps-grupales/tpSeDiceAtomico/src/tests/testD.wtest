@@ -1,0 +1,12 @@
+import ciudades.springfield
+import centrales.*
+
+
+test "D - Teniendo las centrales anteriores, las centrales contaminantes de sprinfield es una colección que adentro tiene sólo a exBosque" {
+	
+	burns.varillasDeUranio(10)
+	exBosque.capacidad(20)
+	
+	assert.equals([exBosque], springfield.centralesContaminantes())
+
+}

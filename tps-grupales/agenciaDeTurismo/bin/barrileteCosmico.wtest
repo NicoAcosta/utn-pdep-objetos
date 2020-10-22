@@ -1,0 +1,60 @@
+import barrileteCosmico.*
+import destinos.*
+
+describe "caracteristicas destinos" {
+	
+
+	test "obtener destinos mas importantes de la agencia" {
+	
+		assert.equals([marDeAjo,lasToninas],barrileteCosmico.destinosMasImportantes())
+	
+	}
+	
+	test "obtener destinos mas peligroso de la agencia"{
+		assert.equals([lasToninas],barrileteCosmico.getDestinos().filter({destino => destino.esPeligroso()}))
+	}
+
+}
+
+describe "descuento de 25 a destinos"{
+	
+	fixture {
+		barrileteCosmico.aplicarDescueto(25)
+	}
+	
+	test "last toninas tiene 25% de descuento"{
+		assert.equals(2625,lasToninas.getPrecio())
+	}
+	
+	test "last toninas tiene el certificado de descuento entre su equipaje impresindible"{
+		assert.that(lasToninas.getEquipaje().contains("Certificado de Descuento"))
+	}
+}
+
+describe "descuento de 15 a destinos"{
+	
+	fixture {
+		barrileteCosmico.aplicarDescueto(15)
+	}
+	
+	test "todos tienen 15% de descuento "{
+		assert.equals([2125,1147.5,2975,1275],barrileteCosmico.getPrecios())
+	}
+	
+	test "todos los destinos tienen su certificado de descuento"{
+		assert.equals([true,true,true,true],barrileteCosmico.getDestinos().map({destino => destino.getEquipaje().contains("Certificado de Descuento")}))
+	}
+}
+
+
+describe "caracteriscas de la empresa"{
+	
+	test "barrileteCosmico es una empresa extrema"{
+		assert.that(barrileteCosmico.esEmpresaExtrema())
+	}
+	
+	test "conocer destinos de la empresa"{
+		assert.equals([marDeAjo,marDelPlata,lasToninas,buenosAires],barrileteCosmico.getDestinos())
+	}
+}
+

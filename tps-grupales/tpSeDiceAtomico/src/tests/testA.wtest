@@ -1,0 +1,11 @@
+import ciudades.springfield
+import centrales.burns
+
+
+test "A - burns con 10 varillas produce 1 Mkwh en springfield" {
+
+	burns.varillasDeUranio(10)
+	
+	assert.equals(1, springfield.produccionEnergeticaDeUnaCentral(burns))
+
+}

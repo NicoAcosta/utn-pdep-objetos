@@ -1,0 +1,12 @@
+import ciudades.*
+import centrales.*
+
+
+test "G - Teniendo las centrales anteriores de springfield, las centrales más productoras de la región donde ésta se encuentra es una colección con exBosque de springfield y la central hidroeléctrica de albuquerque" {
+	
+	burns.varillasDeUranio(10)
+	exBosque.capacidad(20)
+	
+	assert.equals([exBosque, hidroelectrica], region.centralesMasProductivas())
+
+}

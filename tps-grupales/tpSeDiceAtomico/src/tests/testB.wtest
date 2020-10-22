@@ -1,0 +1,11 @@
+import centrales.exBosque
+import ciudades.springfield
+
+
+test "B - exBosque con una capacidad de 20 toneladas produce 18.5 Mkwh en springfield" {
+
+	exBosque.capacidad(20)
+	
+	assert.equals(18.5, springfield.produccionEnergeticaDeUnaCentral(exBosque))
+
+}

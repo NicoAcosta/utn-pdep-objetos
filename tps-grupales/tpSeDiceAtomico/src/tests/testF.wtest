@@ -1,0 +1,14 @@
+import ciudades.springfield
+import centrales.*
+
+
+test "F - Teniendo las centrales anteriores, springfield está al horno si posee una necesidad energética de 30 Mkwh." {
+	
+	burns.varillasDeUranio(10)
+	exBosque.capacidad(20)
+	
+	springfield.necesidad(30)
+	
+	assert.that(springfield.estaEnElHorno())
+
+}

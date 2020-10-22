@@ -1,0 +1,14 @@
+import ciudades.springfield
+import centrales.*
+
+
+test "E - Teniendo las centrales anteriores, springfield cubrió su necesidad energética si ésta era de 20 Mkwh." {
+	
+	burns.varillasDeUranio(10)
+	exBosque.capacidad(20)
+	
+	springfield.necesidad(20)
+	
+	assert.that(springfield.cubrioSusNecesidades())
+
+}

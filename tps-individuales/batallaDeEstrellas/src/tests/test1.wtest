@@ -1,0 +1,71 @@
+import personajes.*
+import batalla.*
+import equipos.*
+
+
+test "Toro se queda con los últimos elementos de sus enemigos" {
+
+	batalla.batallar()
+	
+	assert.equals("manguera", toro.ultimoElemento())
+	
+	toro.quitarUltimoElemento()
+	
+	assert.equals("cinta de papel", toro.ultimoElemento())
+
+}
+
+
+test "Toro se queda con los últimos elementos de sus enemigos, pero no si ya lo tiene" {
+
+	toro.agregarElemento("manguera")
+	
+	batalla.batallar()
+	
+	assert.equals("cinta de papel", toro.ultimoElemento())
+	
+	toro.quitarUltimoElemento()
+	
+	assert.equals("manguera", toro.ultimoElemento())
+
+}
+
+
+test "Pamela y tulipán le ganan a pocardo y toro" {
+	
+	batalla.batallar()
+	
+	assert.equals(equipo1, batalla.equipoGanador())
+	
+}
+
+
+test "Pamela y toro le ganan a pocardo y tulipán" {
+	
+	equipo1.miembros(pamela, toro)
+	
+	equipo2.miembros(pocardo, tulipan)
+	
+	batalla.batallar()
+	
+	assert.equals(equipo1, batalla.equipoGanador())
+	
+	
+}
+
+
+test "Toro y tulipán le ganan a pamela y pocardo" {
+	
+	equipo1.miembros(pamela, pocardo)
+	
+	equipo2.miembros(toro, tulipan)
+	
+	batalla.batallar()
+	
+	assert.equals(equipo2, batalla.equipoGanador())
+	
+	
+}
+
+
+

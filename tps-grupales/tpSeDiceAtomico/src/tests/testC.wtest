@@ -1,0 +1,9 @@
+import centrales.elSuspiro
+import ciudades.springfield
+
+
+test "C - elSuspiro produce 2 Mkwh en springfield" {
+	
+	assert.equals(2, springfield.produccionEnergeticaDeUnaCentral(elSuspiro))
+
+}

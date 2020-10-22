@@ -1,0 +1,30 @@
+import usuarios.*
+import destinos.*
+import viajes.*
+import barrileteCosmico.*
+describe "caracteristicas Pablo hari"{
+	
+	fixture {
+		pabloHari.hacerUnViaje(barrileteCosmico.generarViaje(pabloHari,lasToninas))
+		pabloHari.hacerUnViaje(barrileteCosmico.generarViaje(pabloHari,buenosAires))
+	}
+	
+	test "obtener millas de PHari"{
+		assert.equals(674,pabloHari.cantidadDeKilometros())
+	}
+}
+
+describe "acciones de Pablo Hari"{
+	
+	fixture {
+		pabloHari.hacerUnViaje(barrileteCosmico.generarViaje(pabloHari, marDelPlata))
+	}
+	
+	test "PHari vuela a mar del plata y se agrega un viaje a su historial"{
+		assert.equals(1,pabloHari.getViajesQueHizo().size())
+	}
+	
+	test "PHari tiene 7746 en su cuenta despues de volar a mar del plata"{
+		assert.equals(7746,pabloHari.getBilletera())
+	}
+}

@@ -1,0 +1,20 @@
+import destinos.*
+
+describe "caracteristicas de Destinos"{
+	
+	test "silver sea no es un destino peligroso"{
+		assert.notThat(marDelPlata.esPeligroso())
+	}
+	
+	test "marDelPlata se encuentra en el Km 404"{
+		assert.equals(404,marDelPlata.getUbicacion())
+	}
+		
+}
+
+describe "distancia Entre destinos"{
+	
+	test "la distancia entre las toninas y buenos Aires es 337"{
+		assert.equals(337,buenosAires.distanciaA(lasToninas))
+	}
+}
