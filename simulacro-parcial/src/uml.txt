@@ -1,0 +1,132 @@
+@startuml
+class Date{}
+
+class Fiesta {
+lugar
+
+fecha()
+agregarInvitado(unInvitado)
+esUnBodrio()
+mejorDisfraz()
+estaInvitado(unaPersona)
+algunoEstaSatisfechoAlCambiar(unAsistente, otroAsistente)
+puedenIntercambiarTrajes(unAsistente, otroAsistente)
+agregarAsistente(unAsistente)
+}
+
+object fiestaInolvidable {
+esInolvidable()
+}
+
+class Invitado {
+disfraz()
+disfraz(unDisfraz)
+conOtroDisfraz(unDisfraz)
+satisfechoComun()
+requisitoExtra()
+satisfecho ()
+satisfechoConOtroDisfraz(unDisfraz)
+sexy()
+
+}
+
+abstract Exquisito {
+satisfecho()
+satisfecho(disfraz)
+}
+
+class Caprichoso {
+satisfecho(disfraz)
+}
+
+class Pretencioso {
+satisfecho(disfraz)
+}
+
+class Numerologo {
+puntaje
+satisfecho(disfraz)
+}
+
+interface Personalidad {
+sexy()
+}
+
+object alegre {
+sexy()
+}
+
+class Taciturna {
+edad
+sexy()
+}
+
+class Cambiante {
+posiblesPersonalidades
+sexy()
+}
+
+class Disfraz {
+nombre
+fechaDeConfeccion
+puntuacion()
+}
+
+interface Caracteristica {
+puntuacion()
+}
+
+class Tobara {
+fechaDeCompra
+fiesta
+puntuacion()
+}
+
+class Gracioso {
+puntuacion()
+}
+
+class Careta {
+puntuacion()
+}
+
+class Sexy {
+personaSexy
+puntuacion()
+}
+
+class Personaje {
+valor
+valor()
+}
+
+
+
+
+Invitado <|-- Exquisito
+Exquisito <|-- Caprichoso
+Exquisito <|-- Pretencioso
+Exquisito <|-- Numerologo
+
+Fiesta <|-- fiestaInolvidable
+
+Disfraz <-- Invitado
+Personalidad <.. Invitado
+
+Fiesta -->"*" Invitado : invitados
+Date <-- Fiesta : fecha
+
+Disfraz ..>"*" Caracteristica : caracteristicas
+
+alegre ..|> Personalidad
+Taciturna ..|> Personalidad
+Cambiante ..|> Personalidad
+
+
+Caracteristica <|.. Gracioso
+Caracteristica <|.. Tobara
+Caracteristica <|.. Careta
+Caracteristica <|.. Sexy
+
+Careta --> Personaje : personaje
+@enduml
