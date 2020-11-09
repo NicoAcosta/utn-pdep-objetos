@@ -8,65 +8,58 @@ class Tripulante inherits Jugador {
 	
 	
 	
-	override method completoSusTareas() = tareasARealizar.isEmpty()
+	override method completoSusTareas() = tareasPendientes.isEmpty()
 	
 	
-	
-	// Tareas
-	
-	override method arreglarTableroElectrico() {
+	override method realizarTarea(unaTarea) {
 		
-		if (self.tieneItem(llaveInglesa)) {
-			
-			self.aumentarSospecha(10)
-			self.quitarTarea(arreglarTableroElectrico)
-			
-		}
+		unaTarea.hacerTarea(self)
 		
 	}
-	
-	override method sacarBasura() {
-		
-		if (self.tieneItem(escoba) && self.tieneItem(bolsaDeConsorcio)) {
-			
-			self.reducirSospecha(4)
-			self.quitarTarea(sacarBasura)
-				
-		}		
-	}
-	
-	override method ventilarNave() {
-		nave.aumentarOxigeno(5)
-	}
-	
-	
-	
 	
 	override method sumarTipoDeJugador() {
 		nave.sumarTripulante()
 	}
 	
+	override method voto() {
+		 
+		 if (impugnado) {
+		 	impugnado = false
+		 	return null
+		 }
+		 
+		 return self.preferenciaDeVoto()
+	}
+	
+	method preferenciaDeVoto()
+	
 	
 	
 }
+
+
+
+
+
+
 
 
 
 class Troll inherits Tripulante {
 	
-	override method jugadorQueVota() = nave.elegirNoSospechoso()
+	override method preferenciaDeVoto() = nave.elegirNoSospechoso()
 	
 }
 
 class Detective inherits Tripulante {
 	
-	override method jugadorQueVota() = nave.jugadorMasSospechoso()
+	override method preferenciaDeVoto() = nave.jugadorMasSospechoso()
 	
 }
 
 class Materialista inherits Tripulante {
 	
-	override method jugadorQueVota() = nave.elegirMochilaVacia()
+	override method preferenciaDeVoto() = nave.elegirMochilaVacia()
 	
 }
 

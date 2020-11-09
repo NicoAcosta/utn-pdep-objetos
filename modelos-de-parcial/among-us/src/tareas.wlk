@@ -6,51 +6,64 @@ import items.*
 
 class Tarea {
 	
-	var jugador
+	const itemsNecesarios
 	
-	method realizar()
+	method condicion(unJugador) = unJugador.tieneItems(itemsNecesarios)
 	
+	method consecuenciasJugador(unJugador)
+	method consecuenciasNave()
+
 	method verificarTareas(){
 		nave.verificarTareas()
 	}
 	
-}
-
-class ArreglarElTablero inherits Tarea {
-	
-	
-	override method realizar() {
+	method hacerTarea(unJugador) {
 		
-		jugador.arreglarTableroElectrico()
-		self.verificarTareas()
-		
+		if (self.condicion(unJugador)) {
+			
+			self.consecuenciasJugador(unJugador)
+			self.consecuenciasNave()
+			
+			self.verificarTareas()
+			
+		}
 	}
-	
-	
-}
-
-class SacarBasura inherits Tarea {
-	
-	
-	override method realizar() {
-		
-		jugador.sacarBasura()
-		self.verificarTareas()
-		
-	}
-	
 	
 }
 
-class VentilarNave inherits Tarea {
+
+
+
+
+
+object arreglarElTableroElectrico inherits Tarea(itemsNecesarios = [llaveInglesa]) {
 	
-	
-	override method realizar() {
-		
-		jugador.ventilarNave()
-		self.verificarTareas()
-		
+	override method consecuenciasJugador(unJugador) {
+		unJugador.aumentarSospecha(10)
 	}
 	
+	override method consecuenciasNave() {
+		nave.aumentarOxigeno(10)
+	}
 	
 }
+
+object sacarLaBasura inherits Tarea(itemsNecesarios = [escoba, bolsaDeConsorcio]) {
+	
+	override method consecuenciasJugador(unJugador) {
+		unJugador.reducirSospecha(4)
+	}
+	
+	override method consecuenciasNave() {}
+}
+
+object ventilarLaNave inherits Tarea(itemsNecesarios = []) {
+	
+	override method consecuenciasJugador(unJugador) {}
+	
+	override method consecuenciasNave() {
+		nave.aumentarOxigeno(5)
+	}
+}
+
+

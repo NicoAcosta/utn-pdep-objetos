@@ -2,7 +2,7 @@ import jugadores.*
 import items.*
 
 
-class GanaronLosImpostoresException inherits Exception {}
+class GanaronLosImpostoresException inherits Exception() {}
 class GanaronLosTripulantesException inherits Exception {}
 
 

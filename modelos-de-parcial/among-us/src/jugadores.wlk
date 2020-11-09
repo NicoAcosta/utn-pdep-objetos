@@ -4,11 +4,11 @@ import items.*
 
 class Jugador {
 	
-	var mochila = []
+	var mochila = 0
 	
-	var property nivelDeSospecha = 40
+	var nivelDeSospecha = 40
 	
-	var tareasARealiwzar = []
+	var tareasPendientes
 	
 	var impugnado = false
 	
@@ -21,7 +21,7 @@ class Jugador {
 	}
 	
 	method quitarTarea(unaTarea) {
-		mochila.remove(unaTarea)
+		tareasPendientes.remove(unaTarea)
 	}
 	
 	method aumentarSospecha(unaCantidad) {
@@ -35,6 +35,8 @@ class Jugador {
 	method mochilaVacia() = mochila.isEmpty()
 	
 	method tieneItem(unItem) = mochila.contains(unItem)
+	
+	method tieneItems(unosItems) = unosItems.forEach{unItem => self.tieneItem(unItem)}
 		
 	method esSospechoso() = nivelDeSospecha > 50
 	
@@ -50,14 +52,9 @@ class Jugador {
 	method completoSusTareas()
 	
 	
-	// Tareas
-	method arreglarTableroElectrico()
-	method sacarBasura()
-	method ventilarNave()
+	method realizarTarea(unaTarea)
 	
-	
-	
-	method jugadorQueVota()
+	method voto()
 	method sumarTipoDeJugador()
 	
 }
