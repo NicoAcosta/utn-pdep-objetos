@@ -1,0 +1,119 @@
+// backup por si pasa algo con el browser mientras lo hago
+
+@startuml
+object app {
+pagarMultas()
+zonaMasTransitada()
+usuariosComplicados()
+}
+
+class Zona {
+velocidadPermitida
+
+cantidadDeUsuariosCirculando()
+esDiaPar()
+excesoDeVelocidad(unUsuario)
+infraccionEcologica(unUsuario)
+infraccionRegulatoria(unUsuario)
+generarMulta(unCosto)
+controlDeVelocidad(unUsuario)
+controlEcologico(unUsuario)
+controlRegulatorio(unUsuario)
+controlarUnUsuario(unUsuario)
+controlarUsuarios()
+}
+
+
+class Usuario {
+nombreDeUsuario
+dni
+dineroDisponible
+
+puedePagar(unMonto)
+pagar(unMonto)
+cargarDinero(unMonto)
+quitarMulta(unaMulta)
+agregarMulta(unaMulta)
+pagarMulta(unaMulta)
+recorrer(unaDistancia)
+cargarCombustible(unosLitros)
+multasPendientes()
+deuda()
+velocidadPromedioDelVehiculo()
+vehiculoEcologico()
+tieneDniPar()
+tieneDniImpar()
+pagarMultas()
+esComplicado()
+}
+
+
+
+abstract Vehiculo {
+capacidadDeTanque
+combustibleCargado
+velocidadPromedio
+
+puedeCargar(unosLitros)
+aumentarCombustibleCargado(unosLitros)
+quitarCombustibleCargado(unosLitros)
+consumirCombustible(unosLitros)
+litrosHastaLlenarElTanque()
+costo(unosLitros)
+consumoBase()
+consumo(unaDistancia)
+recorrer(unaDistancia)
+cargarCombustible(unosLitros, unUsuario)
+cantidadCargada(unosLitros)
+
+abs esEcologico()
+abs consumoAdicional(unaDistancia)
+
+}
+
+
+class Camioneta {
+esEcologico()
+consumoAdicional(unaDistancia)
+
+consumoBase() // override de método no abstracto
+}
+
+class Deportivo {
+esEcologico()
+consumoAdicional(unaDistancia)
+
+}
+
+class Familiar {
+esEcologico()
+consumoAdicional(unaDistancia)
+
+}
+
+
+
+class Multa {
+costo
+pagada
+
+costo()
+actualizarCosto()
+registrarPago()
+serPagadaPor(unUsuario)
+
+}
+
+
+
+app -->"*" Usuario : usuarios
+app -->"*" Zona : zonas
+Zona -->"*" Usuario : usuariosCirculando
+
+Usuario -->"*" Multa : multas
+Usuario --> Vehiculo : vehiculo
+
+Vehiculo <|-- Deportivo
+Vehiculo <|-- Camioneta
+Vehiculo <|-- Familiar
+@enduml
