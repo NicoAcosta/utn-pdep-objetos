@@ -1,0 +1,107 @@
+http://www.plantuml.com/plantuml/png/XLJBRjim4BppAuISqgBs1nH54C5o3WMI2Avx3jRKrc50aG8VG96q_zwHB5g4RA4dKxkpmzdPfUzz81TYguKzlB4C1RUTOqyLRspBJYhIwfsaigRu44AqrWHRMrUnO_bgAovZiEuscWqIR5HZFmbfM-LHK3lRARgUsxF6CSzzAQBvwICv1TWlag0j6zLVJBhMP6wpD1GYyICUWWsa5rd42AouOY_97MaHsem0juYGP89gg9d8_DPizIFxKeO85JasCVY4nN42zBpq0FyekxWcHtiBNAvWoZzOzqxDp4tnLmYfoVjYPCQCwEWOT5SwNl1r6Wectf5HT3cSPFai5havkt6n10T7plEicmNm_xnTj3JvE3cHcdYYKu-m9FMNNtgbOlixE39lx0WrgaLtVjZrsk4mi2qpANmukCj5xodgPqxVZcxLb9ht8RcKldDDkBEZemMH9ztOQmcIiOqQDfGF19V0Cw6IHxsGtX_HieS4CXZXJ6_g0vHBhplJjLFc6AnXW9le1bF6rK3PepB0LwopidF1QdLN3F7YQq7zRw8y1J_cDDbyNfKF3CJZyzF--QL-thriobsvsMztmjZsu5YWMNW0rHwtFmsnNFNtoCUfFsSxDT0BiVnd1xatds_IkuBcU3fvLAKWC1Vh1gGSG-8Yz-tFQdLbtSw4w_NTi3yWwV2JuabCcYhIwI51pdc0e5-lJxtEWgE5ysYQZH33fNqixLSM6RUhiK8a0OFGYGmjfxEuPzF4Lly3
+
+@startuml
+object empresaDeComercializacion {
+
+
+montoPorDerechoDeAutor(unContenido)
+comisionPropia(unContenido)
+comisionTelcom(unContenido, unUsuario)
+factorAdicionalPlan(unUsuario)
+precioSubtotal(unContenido, unUsuario)
+
+
+precioDeDescarga(unContenido, unUsuario)
+descargar(unContenido, unUsuario)
+cantidadDeDescargasEnElMesActual(unUsuario)
+contenidosDescargados(unUsuario, unaFecha)
+descargarParaTodos(unContenido)
+descargaForzada(unContenido)
+
+}
+
+class Usuario {
+agregarDescarga(unContenido)
+factorAdicionalPlan()
+comisionCompaniaTelcom(unContenido)
+precio(unContenido)
+puedeDescargar(unContenido)
+cobrarse(unContenido)
+descargar(unContenido)
+cantidadDeDescargasEnElMesActual()
+contenidosDescargados(unaFecha)
+}
+
+class CompaniaNacional {
+comision(unContenido)
+}
+
+class CompaniaExtranjera {
+impuestoPorPrestacion
+comision(unContenido)
+}
+
+interface Plan {
+factorAdicional()
+puedePagar(unCosto)
+cobrar(unCosto)
+}
+
+class Prepago {
+saldo
+}
+
+class Prepago {
+acumuladoAFacturar
+}
+
+class Descarga {
+fecha
+mes()
+anio()
+}
+
+interface Contenido {
+montoPorDerechoDeAutor()
+}
+
+class Ringtone {
+duracion
+precioPorMinutoDelAutor()
+}
+
+Ringtone --> Autor : autor
+
+class Autor {
+precioPorMinuto
+}
+
+class Chiste {
+MONTO_POR_CARACTER
+nombre
+caracteresDelNombre()
+}
+
+class Juego {
+montoPropio
+}
+
+
+
+empresaDeComercializacion -->"*" Usuario : usuarios
+
+
+Usuario --> CompaniaNacional : compania
+CompaniaNacional <|-- CompaniaExtranjera
+Usuario ..> Plan : plan
+Usuario -->"*" Descarga : descargas
+
+Contenido <|.. Juego
+Contenido <|.. Chiste
+Contenido <|.. Ringtone
+
+Plan <|.. Prepago
+Plan <|.. Facturado
+
+Descarga ..> Contenido : contenido
+@enduml
